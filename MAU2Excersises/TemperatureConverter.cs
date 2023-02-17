@@ -11,6 +11,7 @@ namespace MAU2Assignment
         public void Start()
         {
             Console.WriteLine("     TEMPERATUR CONVERTER     ");
+            ShowMenu();
             
            
         }
@@ -28,12 +29,16 @@ namespace MAU2Assignment
             {
                 switch (number)
                 {
+                    case 0:
+                        break;
                     case 1:
-                        CelsiusToFarenheit(0);
+                        ShowCelsiusToFarenheit();
                         break;
                     case 2:
+                        ShowFarenheitToCelsius();
                         break;
-                    case 0:
+                    default:
+                        Environment.Exit(0);
                         break;
                 }
 
@@ -51,21 +56,44 @@ namespace MAU2Assignment
         private void ShowCelsiusToFarenheit()
         {
             Console.WriteLine("You have chosen nr 1");
-            double  
+            CelsiusToFarenheit(0);
+            
         }
-        double CelsiusToFarenheit(double celsius)
+        double CelsiusToFarenheit(double startCelsius)
         {
-            const int max = 100;
+            const int maxCelsius = 100;
             double farenheit = 0;
 
-            while (celsius < max)
+
+            for (double celsius = startCelsius; celsius <= maxCelsius; celsius += 4)
             {
-                celsius += 4;
                 farenheit = 9 / 5.0 * celsius + 32;
-                Console.WriteLine(farenheit);
+                
+                Console.WriteLine($"{celsius:f2} °C = {farenheit:f2} °F");
             }
             
             return farenheit;
         }
+
+
+        private void ShowFarenheitToCelsius()
+        {
+            Console.WriteLine("You have chosen nr 2");
+            FarenheitToCelsuis(0);
+
+        } 
+        double FarenheitToCelsuis(double startFarenheit)
+        {
+            const int maxFarenheit = 210;
+            double celsius = 0; 
+            for(double farenheit = startFarenheit; farenheit <= maxFarenheit; farenheit += 5)
+            {
+                celsius = 5 / 9.0 * (farenheit - 32);
+                Console.WriteLine($" {farenheit:f2} °F = {celsius:f2} °C");
+            }
+            return celsius;
+        }
+
+
     }
 }
