@@ -25,7 +25,7 @@ namespace MAU2Assignment
             response = Console.ReadLine();
 
             bool success = int.TryParse(response, out number);
-            if (success)
+            if (success)// if the tryparse returns true, this will be done
             {
                 switch (number)
                 {
@@ -44,7 +44,7 @@ namespace MAU2Assignment
 
 
             }
-            else
+            else// if the tryparse return false, this will be done.
             {
                 Console.WriteLine("You need to pick a number");
             }
@@ -56,7 +56,7 @@ namespace MAU2Assignment
         private void ShowCelsiusToFarenheit()
         {
             Console.WriteLine("You have chosen nr 1");
-            CelsiusToFarenheit(0);
+            CelsiusToFarenheit(0); // 0 is passed as an argument, meaning that it the startCelsius will be 0
             
         }
         double CelsiusToFarenheit(double startCelsius)
@@ -65,7 +65,7 @@ namespace MAU2Assignment
             double farenheit = 0;
 
 
-            for (double celsius = startCelsius; celsius <= maxCelsius; celsius += 4)
+            for (double celsius = startCelsius; celsius <= maxCelsius; celsius += 4) // adds 4 degrees celsius for every iteration
             {
                 farenheit = 9 / 5.0 * celsius + 32;
                 
@@ -79,17 +79,17 @@ namespace MAU2Assignment
         private void ShowFarenheitToCelsius()
         {
             Console.WriteLine("You have chosen nr 2");
-            FarenheitToCelsuis(0);
+            FarenheitToCelsuis(0); // 0 is passed as an argument, meaning that it the startFarenheit will be 0
 
         } 
         double FarenheitToCelsuis(double startFarenheit)
         {
-            const int maxFarenheit = 210;
+            const int maxFarenheit = 210; // The maximum farenheit degrees, used in the for loop on line 89.
             double celsius = 0; 
-            for(double farenheit = startFarenheit; farenheit <= maxFarenheit; farenheit += 5)
+            for(double farenheit = startFarenheit; farenheit <= maxFarenheit; farenheit += 5) //startFarenheit is the value passed in the method call. It will add 5 for every iteration.
             {
                 celsius = 5 / 9.0 * (farenheit - 32);
-                Console.WriteLine($" {farenheit:f2} °F = {celsius:f2} °C");
+                Console.WriteLine($" {farenheit:f2} °F = {celsius:f2} °C"); // f2 means it will have two decimals.
             }
             return celsius;
         }

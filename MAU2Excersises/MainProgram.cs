@@ -4,13 +4,17 @@
     {
         static void Main(string[] args)
         {
-            //FunFeatures myFeature = new();
-            //myFeature.Start();
-            //ContinueToNextPart();
-            //MathWorks mathObj = new();
-            //mathObj.Start();
+            FunFeatures myFeature = new();
+            myFeature.Start();
+            ContinueToNextPart();
+            MathWorks mathObj = new();
+            mathObj.Start();
+            ContinueToNextPart();
             TemperatureConverter myConverter = new();
             myConverter.Start();
+            //ContinueToNextPart();
+            WorkingSchedule mySchedule = new();
+            mySchedule.Start();
         }
 
         private static void ContinueToNextPart()

@@ -4,15 +4,14 @@
     {
         public void Start()
         {
-            do
+            do // always does the first two methods and continues until exitCalculation returns true.
             {
                 PrintMultiplication();
                 Calculate();
-
             }
             while (ExitCalculation());
         }
-        public void PrintMultiplication()
+        private void PrintMultiplication()
         {
             Console.WriteLine();
             Console.WriteLine("  ****** Multiplication Table ******");
@@ -25,15 +24,33 @@
                 Console.WriteLine();
             }
         }
-        public void Calculate()
+        private void Calculate()
         {
             int startNum;
             int endNum;
             Console.WriteLine("Sum numbers between any two numbers");
-            Console.Write("Give first number: ");
-            startNum = int.Parse(Console.ReadLine());
-            Console.Write("Give second number: ");
-            endNum = int.Parse(Console.ReadLine());
+            bool validInput;
+            do
+            {
+                Console.Write("Give first number: ");
+                validInput = int.TryParse(Console.ReadLine(), out startNum);
+
+                if (!validInput)
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
+            } while (!validInput);
+
+            do
+            {
+                Console.Write("Give second number: ");
+                validInput = int.TryParse(Console.ReadLine(), out endNum);
+
+                if (!validInput)
+                {
+                    Console.WriteLine("Invalid input. Please enter a second number.");
+                }
+            } while (!validInput);
             if (startNum > endNum)
             {
                 int tempNum = endNum;
@@ -44,11 +61,13 @@
             int sum = SumNumbers(startNum, endNum);
             Console.WriteLine($"The sum of numbers between {startNum} and {endNum} is {sum}");
             PrintEvenNumbers(startNum, endNum);
+            Console.WriteLine();
             PrintOddNumbers(startNum, endNum);
+            Console.WriteLine();
             CalculateSquareRoots(startNum, endNum);
 
         }
-        private int SumNumbers(int start, int end)
+        private static int SumNumbers(int start, int end)
         {
             int sum = 0;
             for (int i = start; i <= end; i++)
@@ -60,19 +79,22 @@
         private void PrintEvenNumbers(int number1, int number2)
         {
             Console.WriteLine($"The even numbers between {number1} and {number2} are:");
+           
             for (int i = number1; i <= number2; i++)
             {
                 if (i % 2 == 0)
                 {
-
+                   
                     Console.Write(i + " ");
+                   
                 }
             }
         }
 
-        void PrintOddNumbers(int number1, int number2)
+        private void PrintOddNumbers(int number1, int number2)
         {
             Console.WriteLine($"The even numbers between {number1} and {number2} are:");
+              
             for (int i = number1; i <= number2; i++)
             {
                 if (i % 2 != 0)
@@ -98,16 +120,17 @@
             }
         }
 
-        private bool ExitCalculation()
+        private bool ExitCalculation() // Returns the value of done, which is set to false until user enters no
         {
             bool done = false;
             bool responseOK = true;
-            string response;
+            string response = String.Empty;
             do
             {
                 Console.WriteLine("Exit MathWork? y/n");
                 response = Console.ReadLine();
                 response = response.ToLower();
+                responseOK = true;
                 if (response == "y")
                 {
                     done = false;

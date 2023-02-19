@@ -26,16 +26,16 @@ namespace MAU2Assignment
 
         }
 
-        public void Introduce()
+        private void Introduce()
         {
 
-            Console.WriteLine("My name is Emma and I am a student of the 23 semester!");
-            Console.WriteLine("Let me know about yourselt!");
+            Console.WriteLine("My name is Emma and I am a student of the spring semester 2023!");
+            Console.WriteLine("Let me know about yourself!");
             ReadName();
             ReadEmail();
             Console.WriteLine($"Nice to meet you {_name}\nYour email is {_email}");
         }
-        public void ReadName()
+        private void ReadName()
         {
             Console.Write("Your first name please: ");
             string firstName = Console.ReadLine();
@@ -43,7 +43,7 @@ namespace MAU2Assignment
             string lastName = Console.ReadLine();
             _name = lastName.ToUpper() + ", " + firstName;
         }
-        public void ReadEmail()
+        private void ReadEmail()
         {
             Console.Write("Your email please: ");
             _email = Console.ReadLine();
@@ -65,42 +65,56 @@ namespace MAU2Assignment
         }
         private void FortuneTeller()
         {
+            int day;
             Console.WriteLine();
             Console.WriteLine(" **** FORTUNE TELLER *****");
-            Console.Write("Select a number between 1 and 7: ");
-            int day = int.Parse(Console.ReadLine());
 
-            string fortune = string.Empty;
-
-            switch (day)
+            while (true) // Reruns the method if the user enters something that isnt a number.
             {
-                case 1:
-                    fortune = "Keep calm on Mondays! You can fall apart";
-                    break;
-                case 2:
-                case 3:
-                    fortune = "Tuesdays and Wednesdays break your heart";
-                    break;
-                case 4:
-                    fortune = "Thursdays doesn't even start!";
-                    break;
-                case 5:
-                    fortune = "It's friday, you're in love!";
-                    break;
-                case 6:
-                    fortune = "Saturday, do nothing at all!";
-                    break;
-                case 7:
-                    fortune = "And Sunday always comes too late";
-                    break;
-                default:
-                    fortune = "No day? Must be a good day even though it doesn't exist!";
-                    break;
+                Console.Write("Select a number between 1 and 7: ");
+                bool parsedDay = int.TryParse(Console.ReadLine(), out day);
 
+                if (parsedDay)
+                { 
+                    string fortune = string.Empty;
+
+                    switch (day)
+                    {
+                        case 1:
+                            fortune = "Keep calm on Mondays! You can fall apart";
+                            break;
+                        case 2:
+                        case 3:
+                            fortune = "Tuesdays and Wednesdays break your heart";
+                            break;
+                        case 4:
+                            fortune = "Thursdays doesn't even start!";
+                            break;
+                        case 5:
+                            fortune = "It's friday, you're in love!";
+                            break;
+                        case 6:
+                            fortune = "Saturday, do nothing at all!";
+                            break;
+                        case 7:
+                            fortune = "And Sunday always comes too late";
+                            break;
+                        default:
+                            fortune = "No day? Must be a good day even though it doesn't exist!";// If the user enters a number thats not 1-7
+                            break;
+                    }
+
+                    Console.WriteLine(fortune);
+                    break; 
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input! Please enter a number between 1 and 7."); // this catches the program if the user enters something that isn't a number.
+                }
             }
-            Console.WriteLine(fortune);
         }
-            private void CalculateStringLength()
+
+        private void CalculateStringLength()
         {
             Console.WriteLine("----STRENGTH lENGTH----");
             Console.WriteLine("Write a text with any number of characters and press Enter.");
